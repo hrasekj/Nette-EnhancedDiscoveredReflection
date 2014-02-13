@@ -1,0 +1,20 @@
+services:
+	serviceFactory: ServiceFactory
+	database: @serviceFactory::createDatabase(%database%, @cacheStorage)
+	selectionFactory: @serviceFactory::createSelectionFactory(@database)
+
+parameters:
+	database:
+		driver: mysql
+		host: localhost
+		username: root
+		password: ...
+		dbname: ...
+
+		options:
+			sqlmode: STRICT_ALL_TABLES
+			lazy: true
+
+		views:
+			view1: primaryKey
+			view2: [primaryKey1, primaryKey2]
